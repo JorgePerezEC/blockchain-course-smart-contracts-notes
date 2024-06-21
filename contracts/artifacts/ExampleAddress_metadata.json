@@ -18,6 +18,26 @@
 			},
 			{
 				"inputs": [],
+				"name": "count",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "counter",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
 				"name": "getAddressBalance",
 				"outputs": [
 					{
@@ -31,7 +51,46 @@
 			},
 			{
 				"inputs": [],
+				"name": "ownerAddress",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_newCount",
+						"type": "uint256"
+					}
+				],
+				"name": "setCount",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
 				"name": "setMsgSender",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_newValue",
+						"type": "uint256"
+					}
+				],
+				"name": "setNewValue",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -123,11 +182,11 @@
 	},
 	"sources": {
 		"contracts/ExampleAddress.sol": {
-			"keccak256": "0xdd026d751a5d1c24e227a896922bbb57cd6f81d7d0628026a89a892ea5ce2d24",
+			"keccak256": "0x33aa8d134991a05937dd08859ba9cd8cd18f4d90c83d496e687f0379fd4e1e4e",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://37ee775c3fec4eaae1e533ddf2d33d1d7a9cafe026b5aef18782a1a91df259c3",
-				"dweb:/ipfs/QmVS2V1wS7UmcbPjY1qLJBSE1Fw5uUuZ9g588ifJziFNVU"
+				"bzz-raw://b95d1b791fe8201a22b2b35f135d8d0fa81f0ced320aac0b166a1d91aa32f3ce",
+				"dweb:/ipfs/QmXmgojaHM8ghMSbCEyotsj7jDTfGVTfgChzeKcw15pfgh"
 			]
 		}
 	},
