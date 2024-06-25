@@ -8,19 +8,19 @@ contract ExampleAddress {
     // 1^18 wei = 1 ether
 
     // Address(wallets or contracts) = 20 bytes of length
-    address public someAddress;
-    address public ownerAddress;
+    address public  someAddress;
+    address public  ownerAddress;
 
-    uint    public value;
-
-    uint    public count;
+    uint    public  value;
+    uint    public  count;
+    uint    private newValue = 10;  // No default getter
 
     constructor(uint _value) {
         someAddress = msg.sender;
         ownerAddress =  msg.sender;
         value       = _value;
     }
-    
+
     modifier onlyOwner() {
         require(msg.sender == ownerAddress, "Not owner");
         _;
@@ -29,6 +29,16 @@ contract ExampleAddress {
     modifier  verifyCount(){
         _;
         require(count < 4, "Count must be lower than 4");
+    }
+
+    function getNewValue() public view returns(uint) {
+        return  newValue;
+    }
+
+    //sum function
+    // pure function - dont call blockchain - no transaction
+    function sumTwoN(uint a, uint b) public pure returns(uint) {
+        return a + b;
     }
 
     function counter() public verifyCount {
@@ -71,10 +81,14 @@ contract ExampleAddress {
     }
 
     function setCount(uint _newCount) public onlyOwner  {
-
-        // require(someAddress == msg.sender, "Not deployer. Transaction canceled");
         count = _newCount;
-        // return true;
+    }
+
+    // Not recommended to return address value as an function output
+    //GETTERS and SETTERs
+    // View functions have infinite gas because this functions no consume gas fees.
+    function getSomeAddress(address) public view returns (address) {
+        return someAddress;
     }
 
 }
