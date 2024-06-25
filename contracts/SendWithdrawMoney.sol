@@ -25,12 +25,18 @@ todos los fondos del contrato y enviarlos a una dirección específica.
 */
 contract SendWithdrawMoney {
 
-    address public ownerAccount;
     uint public balanceReceive;
 
+    // Event declare (events can see in logs section)
+    event Deposit(address indexed from, uint256 value);
+    event WithdrawAll(address indexed to, uint256 value);
+    event WithdrawAllTo(address indexed from, address to, uint256 value);
+
+    // function to deposit ETH into contract
     function depositMoney() public payable  {
         if (msg.value != 0 ether) {
             balanceReceive += msg.value;
+            emit Deposit(msg.sender, msg.value);
         } else {
             revert("Error: Not enought money to deposit into contract.");
         }
@@ -43,9 +49,11 @@ contract SendWithdrawMoney {
     // Function to deposit ether into self account
     function transferMoneySelfAccount() public  {
         address payable to = payable(msg.sender);
+        uint256 balance = getContractBalance();
         if (getContractBalance() > 0) {
             to.transfer(getContractBalance());
             balanceReceive = 0;
+            emit WithdrawAll(msg.sender, balance);
             // payable(msg.sender).transfer(msg.value); 
         } else {
             revert("Error: Not enought money into contract to transfer.");
@@ -54,9 +62,13 @@ contract SendWithdrawMoney {
 
     // Function to deposit ether into another account
     function transferMoneyOtherAccount(address payable _newAccount) public  {
+        
+        uint256 balance = getContractBalance();
+        
         if (getContractBalance() > 0) {
             _newAccount.transfer(getContractBalance());
             balanceReceive = 0;
+            emit WithdrawAllTo(msg.sender, _newAccount, balance);
         } else {
             revert("Error: Not enought money into contract to transfer.");
         }
